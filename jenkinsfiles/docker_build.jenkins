@@ -38,6 +38,14 @@ pipeline {
                 '''
             }
         }
+        stage("delete containers") {
+            steps {
+                echo " ============== delete container =================="
+                sh '''
+                docker rm -f $(docker ps -a -q)
+                '''    
+            }
+        }
         stage("docker start") {
             steps {
                 echo " ============== start container =================="
@@ -45,12 +53,6 @@ pipeline {
                 docker run -d asimaliyev/toolbox:latest
                 '''
             }
-        }
-        stage("delete containers") {
-            steps {
-                echo " ============== delete container =================="
-                sh '''
-                docker rm -f $(docker ps -a -q)
-                '''
+        } 
     }
 }
