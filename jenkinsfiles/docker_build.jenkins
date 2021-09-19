@@ -30,11 +30,11 @@ pipeline {
                 }
             }
         }
-        stage("docker push") {
+        stage("docker start") {
             steps {
-                echo " ============== start pushing image =================="
+                echo " ============== start container =================="
                 sh '''
-                docker push asimaliyev/toolbox:latest
+                docker run -d asimaliyev/toolbox:latest
                 '''
             }
         }
