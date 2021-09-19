@@ -46,5 +46,11 @@ pipeline {
                 '''
             }
         }
+        stage("delete containers") {
+            steps {
+                echo " ============== delete container =================="
+                sh '''
+                docker rm -f $(docker ps -a -q)
+                '''
     }
 }
